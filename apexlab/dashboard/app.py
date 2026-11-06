@@ -10,7 +10,7 @@ import streamlit as st
 
 from apexlab.analytics import load_race
 from apexlab.analytics.data import DEFAULT_PATH
-from apexlab.dashboard.components import comparison, corner_analysis, lap_analysis, overview, telemetry, tire_analysis
+from apexlab.dashboard.components import comparison, corner_analysis, lap_analysis, overview, telemetry, tire_analysis, strategy_simulator
 from apexlab.dashboard.theme import CSS
 
 
@@ -42,7 +42,7 @@ def main():
                         "<div class='apex-eyebrow'>Race engineering intelligence</div>", unsafe_allow_html=True)
     st.sidebar.markdown("---")
     page = st.sidebar.radio("WORKSPACE", ["Race Overview", "Driver Comparison", "Telemetry Explorer",
-                                          "Lap Analysis", "Corner Analysis", "Tire & Stint Analysis"])
+                                          "Lap Analysis", "Corner Analysis", "Tire & Stint Analysis", "Race Strategy Simulator"])
     directory = Path(os.environ.get("APEXLAB_DATA_DIR", str(DEFAULT_PATH))).resolve()
     files = ("drivers.csv", "laps.csv", "telemetry.csv", "circuit_corners.csv",
              "session_metadata.json", "data_quality_report.json")
@@ -90,8 +90,10 @@ def main():
         lap_analysis.render(data)
     elif page == "Corner Analysis":
         corner_analysis.render(data)
-    else:
+    elif page == "Tire & Stint Analysis":
         tire_analysis.render(data)
+    else:
+        strategy_simulator.render(data, metadata)
 
 
 if __name__ == "__main__":

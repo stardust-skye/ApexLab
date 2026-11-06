@@ -102,6 +102,33 @@ class DashboardHelperTests(unittest.TestCase):
                 next(widget for widget in app.selectbox if widget.label == "Stint").set_value(2).run()
                 self.assertFalse(app.exception)
 
+    def test_strategy_simulator_replay_and_scenarios(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder)
+            build_race(path)
+            laps = strategy_fixture()
+            laps["s1"], laps["s2"], laps["s3"] = 30, 30, 40
+            laps.to_csv(path / "laps.csv", index=False, na_rep="\\N")
+            (path / "session_metadata.json").write_text(json.dumps({"data": {"total_laps": 30, "session_info": {}}}))
+            (path / "data_quality_report.json").write_text(json.dumps({"validation_failures": []}))
+            app_path = Path(__file__).resolve().parents[1] / "apexlab" / "dashboard" / "app.py"
+            with patch.dict(os.environ, {"APEXLAB_DATA_DIR": str(path)}):
+                app = AppTest.from_file(str(app_path), default_timeout=30).run()
+                app.sidebar.radio[0].set_value("Race Strategy Simulator").run()
+                self.assertFalse(app.exception)
+                self.assertTrue(any("observed compound" in item.value.lower() for item in app.info))
+                next(w for w in app.number_input if w.label.startswith("Historical replay cutoff")).set_value(8).run()
+                self.assertFalse(app.exception)
+                next(w for w in app.button if w.label == "Compare scenarios").click().run()
+                self.assertFalse(app.exception)
+                self.assertFalse(app.error)
+                self.assertTrue(any("Best tested pit" in item.value for item in app.success))
+                next(w for w in app.selectbox if w.label == "Number of pit stops").set_value(2)
+                next(w for w in app.button if w.label == "Compare scenarios").click().run()
+                self.assertFalse(app.exception)
+                self.assertFalse(app.error)
+                self.assertTrue(any("Best tested pit" in item.value for item in app.success))
+
 
 if __name__ == "__main__":
     unittest.main()
