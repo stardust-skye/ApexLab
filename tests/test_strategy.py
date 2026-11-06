@@ -43,7 +43,7 @@ class StintTests(unittest.TestCase):
         self.assertTrue(stints.iloc[0]["incomplete"])
         self.assertEqual(stints.iloc[0]["missing_lap_numbers"], [4])
         self.assertFalse(stints.iloc[1]["start_boundary_pit_observed"])
-        self.assertIsNone(stints.iloc[0]["compound"])
+        self.assertTrue(pd.isna(stints.iloc[0]["compound"]))
         with self.assertRaisesRegex(ValueError, "compound"):
             fit_stint(rows[rows.segment_id == 1])
 
@@ -64,6 +64,7 @@ class StintTests(unittest.TestCase):
     def test_missing_stint_and_missing_flags_not_assumed(self):
         frame = fixture()
         frame.loc[0, "stint"] = None
+        frame["del"] = frame["del"].astype("boolean")
         frame.loc[1, "del"] = None
         rows, summaries = construct_stints(frame)
         self.assertEqual(summaries.iloc[0]["stint_evidence"], "unavailable")
@@ -101,8 +102,13 @@ class StintTests(unittest.TestCase):
             evaluate_holdout(train, train)
         leaked = train.copy()
         leaked["segment_id"] = 42
+        leaked["source_stint"] = 42
         with self.assertRaisesRegex(ValueError, "overlapping"):
             evaluate_holdout(train, leaked)
+        same_stint = test.copy()
+        same_stint["source_stint"] = train["source_stint"].iloc[0]
+        with self.assertRaisesRegex(ValueError, "source stint"):
+            evaluate_holdout(train, same_stint)
         other = test.copy()
         other["compound"] = "HARD"
         with self.assertRaisesRegex(ValueError, "same reported compound"):

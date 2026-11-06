@@ -13,6 +13,10 @@ def evaluate_holdout(train, validation):
         raise ValueError("Provide exactly one segment per split")
     if train["segment_id"].iloc[0] == validation["segment_id"].iloc[0]:
         raise ValueError("Training and validation must use different stint segments")
+    if train["source_stint"].isna().any() or validation["source_stint"].isna().any():
+        raise ValueError("Both splits require source stint numbers")
+    if train["source_stint"].iloc[0] == validation["source_stint"].iloc[0]:
+        raise ValueError("Training and validation must use different source stint numbers")
     if set(zip(train["drv"], train["lap"])) & set(zip(validation["drv"], validation["lap"])):
         raise ValueError("Training and validation contain overlapping driver/lap records")
     if train["drv"].nunique() != 1 or validation["drv"].nunique() != 1 or train["drv"].iloc[0] != validation["drv"].iloc[0]:

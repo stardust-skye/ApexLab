@@ -39,11 +39,10 @@ def residual_uncertainty(fit):
     fig.add_trace(go.Scatter(x=frame["reported_tire_life"], y=frame["residual_seconds"],
                              mode="markers", marker_color=COLORS[0], name="Residual"), row=1, col=1)
     low, high = fit["slope_interval_95"]
+    fig.add_trace(go.Scatter(x=[low, high], y=["OLS slope", "OLS slope"], mode="lines",
+                             line={"color": COLORS[1], "width": 4}, name="95% bootstrap"), row=1, col=2)
     fig.add_trace(go.Scatter(x=[fit["slope_seconds_per_lap"]], y=["OLS slope"], mode="markers",
-                             error_x={"type": "data", "symmetric": False,
-                                      "array": [max(0, high - fit["slope_seconds_per_lap"])],
-                                      "arrayminus": [max(0, fit["slope_seconds_per_lap"] - low)]},
-                             marker_color=COLORS[1], name="95% bootstrap"), row=1, col=2)
+                             marker_color=COLORS[0], name="OLS estimate"), row=1, col=2)
     fig.update_xaxes(title_text="Reported tire life (laps)", row=1, col=1)
     fig.update_yaxes(title_text="Residual (s)", row=1, col=1)
     fig.update_xaxes(title_text="Slope (s / reported life lap)", row=1, col=2)

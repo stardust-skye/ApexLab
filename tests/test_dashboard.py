@@ -11,6 +11,7 @@ from streamlit.testing.v1 import AppTest
 from apexlab.analytics import RaceData, race_overview
 from apexlab.dashboard.helpers import driver_options, format_value, lap_options, prepare_trace_bins
 from test_analytics import build_race
+from test_strategy import fixture as strategy_fixture
 
 
 def fixture():
@@ -81,6 +82,25 @@ class DashboardHelperTests(unittest.TestCase):
                         next(widget for widget in app.selectbox if widget.label == "Lap number").set_value(2).run()
                         self.assertTrue(any("telemetry unavailable" in item.value for item in app.warning))
                         self.assertFalse(app.exception)
+
+    def test_tire_page_stint_selection_and_model(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder)
+            build_race(path)
+            laps = strategy_fixture()
+            laps["s1"], laps["s2"], laps["s3"] = 30, 30, 40
+            laps.to_csv(path / "laps.csv", index=False, na_rep="\\N")
+            (path / "session_metadata.json").write_text(json.dumps({"data": {"session_info": {}}}))
+            (path / "data_quality_report.json").write_text(json.dumps({"validation_failures": []}))
+            app_path = Path(__file__).resolve().parents[1] / "apexlab" / "dashboard" / "app.py"
+            with patch.dict(os.environ, {"APEXLAB_DATA_DIR": str(path)}):
+                app = AppTest.from_file(str(app_path), default_timeout=30).run()
+                app.sidebar.radio[0].set_value("Tire & Stint Analysis").run()
+                self.assertFalse(app.exception)
+                self.assertFalse(app.error)
+                self.assertTrue(any(metric.label == "OLS TREND" for metric in app.metric))
+                next(widget for widget in app.selectbox if widget.label == "Stint").set_value(2).run()
+                self.assertFalse(app.exception)
 
 
 if __name__ == "__main__":

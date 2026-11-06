@@ -70,7 +70,8 @@ def render(data):
         with st.expander("Residual and outlier diagnostics"):
             st.dataframe(fitted["observations"][["lap", "reported_tire_life", "time", "fitted_seconds",
                          "residual_seconds", "residual_outlier", "source_file", "source_row"]], hide_index=True)
-        peers = choices[(choices["segment_id"] != segment) & (choices["compound"] == info["compound"])]
+        peers = choices[(choices["segment_id"] != segment) & (choices["source_stint"] != info["source_stint"])
+                        & (choices["compound"] == info["compound"])]
         if not peers.empty:
             peer = st.selectbox("Holdout stint (same driver and compound)", peers["segment_id"].tolist(),
                                 format_func=lambda value: f"Stint {choices.set_index('segment_id').loc[value, 'source_stint']}",
