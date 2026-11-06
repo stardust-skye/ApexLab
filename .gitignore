@@ -1,0 +1,46 @@
+.venv/
+venv/
+env/
+ENV/
+
+__pycache__/
+*.py[cod]
+
+.ipynb_checkpoints/
+
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets.*
+
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+
+*.log
+*.tmp
+*.temp
+*.part
+*.download
+.apexlab-*
+
+/data/raw/*
+
+/data/processed/**/*.csv
+
+
+!/data/processed/2026/United States Grand Prix/Race/drivers.csv
+!/data/processed/2026/United States Grand Prix/Race/laps.csv
+!/data/processed/2026/United States Grand Prix/Race/weather.csv
+!/data/processed/2026/United States Grand Prix/Race/race_control.csv
+!/data/processed/2026/United States Grand Prix/Race/circuit_corners.csv
+
+!/data/raw/.gitkeep
+!/data/processed/.gitkeep

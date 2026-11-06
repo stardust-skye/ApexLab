@@ -1,0 +1,465 @@
+{
+  "record_counts": {
+    "drivers": 22,
+    "laps": 1165,
+    "telemetry": 908510,
+    "weather": 159,
+    "race_control": 171,
+    "circuit_corners": 20
+  },
+  "missing_values": {
+    "drivers": {
+      "driver": 0,
+      "team": 0,
+      "dn": 0,
+      "fn": 0,
+      "ln": 0,
+      "tc": 0,
+      "url": 0,
+      "source_file": 0,
+      "source_row": 0
+    },
+    "laps": {
+      "time": 2,
+      "lap": 0,
+      "compound": 0,
+      "stint": 0,
+      "s1": 24,
+      "s2": 2,
+      "s3": 2,
+      "ms1": 1,
+      "ms2": 1,
+      "ms3": 2,
+      "life": 26,
+      "pos": 2,
+      "status": 0,
+      "pb": 2,
+      "sesT": 0,
+      "drv": 0,
+      "dNum": 0,
+      "pout": 1132,
+      "pin": 1131,
+      "s1T": 29,
+      "s2T": 2,
+      "s3T": 2,
+      "vi1": 2,
+      "vi2": 2,
+      "vfl": 36,
+      "vst": 2,
+      "fresh": 0,
+      "team": 0,
+      "lST": 0,
+      "lSD": 1,
+      "del": 1,
+      "delR": 1139,
+      "ff1G": 0,
+      "iacc": 0,
+      "wT": 0,
+      "wAT": 0,
+      "wH": 0,
+      "wP": 0,
+      "wR": 0,
+      "wTT": 0,
+      "wWD": 0,
+      "wWS": 0,
+      "source_file": 0,
+      "source_row": 0
+    },
+    "telemetry": {
+      "time": 0,
+      "rpm": 0,
+      "speed": 0,
+      "gear": 0,
+      "throttle": 0,
+      "brake": 0,
+      "drs": 0,
+      "distance": 0,
+      "rel_distance": 3,
+      "DriverAhead": 47724,
+      "DistanceToDriverAhead": 40618,
+      "acc_x": 0,
+      "acc_y": 3,
+      "acc_z": 3,
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "dataKey": 0,
+      "driver": 0,
+      "lap": 0,
+      "source_file": 0,
+      "source_row": 0
+    },
+    "weather": {
+      "wT": 0,
+      "wAT": 0,
+      "wH": 0,
+      "wP": 0,
+      "wR": 0,
+      "wTT": 0,
+      "wWD": 0,
+      "wWS": 0,
+      "source_file": 0,
+      "source_row": 0
+    },
+    "race_control": {
+      "time": 0,
+      "cat": 0,
+      "msg": 0,
+      "status": 167,
+      "flag": 67,
+      "scope": 67,
+      "sector": 121,
+      "dNum": 121,
+      "lap": 0,
+      "source_file": 0,
+      "source_row": 0
+    },
+    "circuit_corners": {
+      "CornerNumber": 0,
+      "CornerLetter": 0,
+      "CornerLabel": 0,
+      "X": 0,
+      "Y": 0,
+      "Angle": 0,
+      "Distance": 0,
+      "MVDistance": 0,
+      "Section": 0,
+      "source_file": 0,
+      "source_row": 0
+    }
+  },
+  "validation_failures": [
+    {
+      "table": "laps",
+      "rule": "unexpected_null:lSD",
+      "count": 1,
+      "examples": [
+        {
+          "lSD": null,
+          "source_file": "session_laptimes.json",
+          "source_row": 294
+        }
+      ]
+    },
+    {
+      "table": "telemetry",
+      "rule": "physical_range:throttle",
+      "count": 1245,
+      "examples": [
+        {
+          "driver": "ALB",
+          "lap": 22,
+          "time": 91.083,
+          "throttle": 104.0,
+          "source_file": "ALB/22_tel.json",
+          "source_row": 657
+        },
+        {
+          "driver": "ALO",
+          "lap": 11,
+          "time": 56.471,
+          "throttle": 104.0,
+          "source_file": "ALO/11_tel.json",
+          "source_row": 433
+        },
+        {
+          "driver": "ALO",
+          "lap": 11,
+          "time": 56.473,
+          "throttle": 103.9500032,
+          "source_file": "ALO/11_tel.json",
+          "source_row": 434
+        },
+        {
+          "driver": "ALO",
+          "lap": 11,
+          "time": 89.713,
+          "throttle": 103.45714102857143,
+          "source_file": "ALO/11_tel.json",
+          "source_row": 685
+        },
+        {
+          "driver": "ALO",
+          "lap": 11,
+          "time": 89.751,
+          "throttle": 104.0,
+          "source_file": "ALO/11_tel.json",
+          "source_row": 686
+        },
+        {
+          "driver": "ALO",
+          "lap": 11,
+          "time": 89.833,
+          "throttle": 104.0,
+          "source_file": "ALO/11_tel.json",
+          "source_row": 687
+        },
+        {
+          "driver": "ALO",
+          "lap": 11,
+          "time": 89.951,
+          "throttle": 104.0,
+          "source_file": "ALO/11_tel.json",
+          "source_row": 688
+        },
+        {
+          "driver": "ALO",
+          "lap": 11,
+          "time": 90.053,
+          "throttle": 104.0,
+          "source_file": "ALO/11_tel.json",
+          "source_row": 689
+        },
+        {
+          "driver": "ALO",
+          "lap": 11,
+          "time": 90.191,
+          "throttle": 104.0,
+          "source_file": "ALO/11_tel.json",
+          "source_row": 690
+        },
+        {
+          "driver": "ALO",
+          "lap": 11,
+          "time": 90.393,
+          "throttle": 101.4750016,
+          "source_file": "ALO/11_tel.json",
+          "source_row": 691
+        }
+      ]
+    },
+    {
+      "table": "telemetry",
+      "rule": "physical_range:distance",
+      "count": 104,
+      "examples": [
+        {
+          "driver": "ALB",
+          "lap": 1,
+          "time": 0.207,
+          "distance": -0.014640328745030342,
+          "source_file": "ALB/1_tel.json",
+          "source_row": 2
+        },
+        {
+          "driver": "ALB",
+          "lap": 31,
+          "time": 0.0,
+          "distance": -0.005310499488191178,
+          "source_file": "ALB/31_tel.json",
+          "source_row": 0
+        },
+        {
+          "driver": "ALB",
+          "lap": 32,
+          "time": 0.0,
+          "distance": -0.0008659738648312681,
+          "source_file": "ALB/32_tel.json",
+          "source_row": 0
+        },
+        {
+          "driver": "ALO",
+          "lap": 14,
+          "time": 0.0,
+          "distance": -0.018090861583740514,
+          "source_file": "ALO/14_tel.json",
+          "source_row": 0
+        },
+        {
+          "driver": "ALO",
+          "lap": 1,
+          "time": 0.207,
+          "distance": -0.021451626173823526,
+          "source_file": "ALO/1_tel.json",
+          "source_row": 2
+        },
+        {
+          "driver": "ALO",
+          "lap": 29,
+          "time": 0.0,
+          "distance": -4.266666673871655e-06,
+          "source_file": "ALO/29_tel.json",
+          "source_row": 0
+        },
+        {
+          "driver": "ALO",
+          "lap": 43,
+          "time": 0.0,
+          "distance": -1.4222222259885342e-06,
+          "source_file": "ALO/43_tel.json",
+          "source_row": 0
+        },
+        {
+          "driver": "ALO",
+          "lap": 49,
+          "time": 0.0,
+          "distance": -0.04382464383450008,
+          "source_file": "ALO/49_tel.json",
+          "source_row": 0
+        },
+        {
+          "driver": "ALO",
+          "lap": 51,
+          "time": 0.0,
+          "distance": -0.3487308328873593,
+          "source_file": "ALO/51_tel.json",
+          "source_row": 0
+        },
+        {
+          "driver": "ANT",
+          "lap": 1,
+          "time": 0.207,
+          "distance": -0.025056440401558324,
+          "source_file": "ANT/1_tel.json",
+          "source_row": 2
+        }
+      ]
+    },
+    {
+      "table": "telemetry",
+      "rule": "physical_range:rel_distance",
+      "count": 135,
+      "examples": [
+        {
+          "driver": "ALB",
+          "lap": 1,
+          "time": 0.207,
+          "rel_distance": -2.7731517896676647e-06,
+          "source_file": "ALB/1_tel.json",
+          "source_row": 2
+        },
+        {
+          "driver": "ALB",
+          "lap": 31,
+          "time": 0.0,
+          "rel_distance": -9.940655023957278e-07,
+          "source_file": "ALB/31_tel.json",
+          "source_row": 0
+        },
+        {
+          "driver": "ALB",
+          "lap": 32,
+          "time": 0.0,
+          "rel_distance": -1.5935616822691667e-07,
+          "source_file": "ALB/32_tel.json",
+          "source_row": 0
+        },
+        {
+          "driver": "ALO",
+          "lap": 14,
+          "time": 0.0,
+          "rel_distance": -3.312830901143433e-06,
+          "source_file": "ALO/14_tel.json",
+          "source_row": 0
+        },
+        {
+          "driver": "ALO",
+          "lap": 1,
+          "time": 0.207,
+          "rel_distance": -4.0774652394067166e-06,
+          "source_file": "ALO/1_tel.json",
+          "source_row": 2
+        },
+        {
+          "driver": "ALO",
+          "lap": 29,
+          "time": 0.0,
+          "rel_distance": -7.795911175472451e-10,
+          "source_file": "ALO/29_tel.json",
+          "source_row": 0
+        },
+        {
+          "driver": "ALO",
+          "lap": 43,
+          "time": 0.0,
+          "rel_distance": -2.6069234564021077e-10,
+          "source_file": "ALO/43_tel.json",
+          "source_row": 0
+        },
+        {
+          "driver": "ALO",
+          "lap": 49,
+          "time": 0.0,
+          "rel_distance": -8.059560920430531e-06,
+          "source_file": "ALO/49_tel.json",
+          "source_row": 0
+        },
+        {
+          "driver": "ALO",
+          "lap": 51,
+          "time": 0.0,
+          "rel_distance": -6.402748750360018e-05,
+          "source_file": "ALO/51_tel.json",
+          "source_row": 0
+        },
+        {
+          "driver": "ANT",
+          "lap": 1,
+          "time": 0.207,
+          "rel_distance": -4.843653536870384e-06,
+          "source_file": "ANT/1_tel.json",
+          "source_row": 2
+        }
+      ]
+    },
+    {
+      "table": "telemetry",
+      "rule": "unaligned_array",
+      "count": 1,
+      "examples": [
+        {
+          "source_file": "BOT/51_tel.json",
+          "field": "acc_y",
+          "expected_length": 3,
+          "actual_length": 9,
+          "action": "unassigned"
+        }
+      ]
+    },
+    {
+      "table": "telemetry",
+      "rule": "unaligned_array",
+      "count": 1,
+      "examples": [
+        {
+          "source_file": "BOT/51_tel.json",
+          "field": "acc_z",
+          "expected_length": 3,
+          "actual_length": 9,
+          "action": "unassigned"
+        }
+      ]
+    }
+  ],
+  "source_coverage": {
+    "source_directory": "D:\\1Projectss\\ApexLab\\data\\raw\\2026\\United States Grand Prix\\Race",
+    "manifest_present": true,
+    "source_commit": "9012398e92459a7cb1e3cbe06bee1b962e1c495b",
+    "manifest_success_files_missing_locally": [],
+    "local_files_not_in_manifest": [],
+    "recorded_driver_laps": 1165,
+    "telemetry_files": 1165,
+    "recorded_laps_without_telemetry": [
+      "BOT/50_tel.json"
+    ],
+    "telemetry_without_recorded_lap": [
+      "BOT/51_tel.json"
+    ],
+    "unaligned_arrays": [
+      {
+        "source_file": "BOT/51_tel.json",
+        "field": "acc_y",
+        "expected_length": 3,
+        "actual_length": 9,
+        "action": "unassigned"
+      },
+      {
+        "source_file": "BOT/51_tel.json",
+        "field": "acc_z",
+        "expected_length": 3,
+        "actual_length": 9,
+        "action": "unassigned"
+      }
+    ]
+  }
+}
